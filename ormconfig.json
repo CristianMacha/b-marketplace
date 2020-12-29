@@ -1,0 +1,13 @@
+{
+    "type": "postgres",
+    "username": "ugi7rfkmdt5jiuitqgyc",
+    "password": "dFSQDuHedXfDdGl7AjJN",
+    "host": "bp7msuke6vg3hhteed3e-postgresql.services.clever-cloud.com",
+    "port": 5432,
+    "database": "bp7msuke6vg3hhteed3e",
+    "entities": ["./src/apis/**/*.entity{.ts,.js}"],
+    "migrations": ["./src/services/postgresql/migrations/*{.ts,.js}"],
+    "cli": {
+        "migrationsDir": "src/services/postgresql/migrations"
+    }
+}
