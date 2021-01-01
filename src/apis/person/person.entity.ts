@@ -20,19 +20,19 @@ export class Person {
     @Column({ nullable: false })
     dni: string;
 
-    @Column({ nullable: false })
+    @Column({ nullable: true })
     photo: string;
 
-    @Column({ nullable: false })
+    @Column({ nullable: true })
     password: string;
 
-    @Column({ nullable: true })
+    @Column({ nullable: true, default: null })
     sexo: boolean;
 
-    @Column({ nullable: false })
+    @Column({ nullable: false, default: false })
     verifiedEmail: boolean;
 
-    @Column({ nullable: false })
+    @Column({ nullable: false, default: false })
     active: boolean;
 
     @CreateDateColumn({ type: 'timestamp', nullable: false })

@@ -12,7 +12,7 @@ export class Role {
     @Column({ nullable: false })
     name: string;
 
-    @Column({ nullable: false })
+    @Column({ nullable: false, default: true })
     active: boolean;
 
     @CreateDateColumn({ type: 'timestamp', nullable: false })
