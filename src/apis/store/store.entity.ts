@@ -1,7 +1,5 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { STATUS_STORE } from '../../config/environment';
-
-import { Person } from '../person/person.entity';
 
 @Entity()
 export class Store {
@@ -43,7 +41,4 @@ export class Store {
 
     @UpdateDateColumn({ type: 'timestamp', nullable: false })
     updateAt: Date;
-
-    @OneToMany(() => Person, (person) => person.store)
-    people: Person[];
 }
