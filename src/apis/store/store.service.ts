@@ -1,6 +1,6 @@
 import { getConnection, getCustomRepository } from 'typeorm';
 
-import { BadRequestException } from '../../middlewares/passport/error-handler';
+import { BadRequestException } from '../../middlewares/error-handler';
 import { PersonRepository } from '../person/person.respository';
 import { RoleRepository } from '../role/role.repository';
 import { StoreRepository } from './store.repository';
@@ -29,11 +29,11 @@ const registerStore = async (store: StoreWriteDto, person: PersonWriteDto) => {
 
         const roleDb = await roleRepository.findOne({ where: { code: ROLE.employe } });
         if (!roleDb) throw BadRequestException('Ocurrio un problema al asignar rol de usuario.');
-        
-        const personDb = await personRepository.findOne({where: { dni: person.dni }});
+
+        const personDb = await personRepository.findOne({ where: { dni: person.dni } });
         if (personDb) throw BadRequestException('El usuario ya existe');
 
-        const hashed = await encryptPassword(person.password); 
+        const hashed = await encryptPassword(person.password);
         person.password = hashed;
 
         const newStore = storeRepository.create(store);

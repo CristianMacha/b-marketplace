@@ -44,6 +44,6 @@ export class Person {
     @ManyToOne(() => Role, (role) => role.people)
     role: Role;
 
-    @ManyToOne(() => Store, (store) => store.people)
+    @ManyToOne(() => Store, (store) => store.people, { nullable: true })
     store: Store;
 }

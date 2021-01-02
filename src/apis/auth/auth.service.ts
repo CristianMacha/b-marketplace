@@ -1,5 +1,5 @@
 import { getCustomRepository } from 'typeorm';
-import { BadRequestException } from '../../middlewares/passport/error-handler';
+import { BadRequestException } from '../../middlewares/error-handler';
 
 import { PersonRepository } from '../person/person.respository';
 

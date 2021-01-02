@@ -1,6 +1,6 @@
 import { getCustomRepository } from 'typeorm';
 
-import { BadRequestException } from '../../middlewares/passport/error-handler';
+import { BadRequestException } from '../../middlewares/error-handler';
 import { RoleRepository } from './role.repository';
 
 import { RolWriteDto } from './role.dto';
