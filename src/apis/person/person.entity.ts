@@ -1,7 +1,6 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 import { Role } from '../role/role.entity';
-import { Store } from '../store/store.entity';
 
 @Entity()
 export class Person {
@@ -17,7 +16,7 @@ export class Person {
     @Column({ nullable: false })
     email: string;
 
-    @Column({ nullable: false })
+    @Column({ nullable: true })
     dni: string;
 
     @Column({ nullable: true })
@@ -28,6 +27,9 @@ export class Person {
 
     @Column({ nullable: true, default: null })
     sexo: boolean;
+
+    @Column({ nullable: true, default: false })
+    google: boolean;
 
     @Column({ nullable: false, default: false })
     verifiedEmail: boolean;
@@ -41,9 +43,6 @@ export class Person {
     @UpdateDateColumn({ type: 'timestamp', nullable: false })
     updateAt: Date;
 
-    @ManyToOne(() => Role, (role) => role.people)
+    @ManyToOne(() => Role, (role) => role.people, { nullable: false })
     role: Role;
-
-    @ManyToOne(() => Store, (store) => store.people)
-    store: Store;
 }

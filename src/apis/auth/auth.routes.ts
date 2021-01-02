@@ -4,6 +4,7 @@ import authController from './auth.controller';
 
 const routes = Router();
 
-routes.post('/singnin/person', authController.singninPerson);
+routes.post('/signin', authController.signin);
+routes.post('/signup', authController.signup);
 
 export default routes;

@@ -3,11 +3,11 @@ import { BadRequestException } from '../../middlewares/passport/error-handler';
 
 import { PersonRepository } from '../person/person.respository';
 
-import { AuthSingninDto } from './auth.dto';
-import { comparePassword } from './utils/encrypt';
+import { AuthSignupDto, AuthSingninDto } from './auth.dto';
+import { comparePassword, encryptPassword } from './utils/encrypt';
 import { generateJWT } from './utils/jwt';
 
-const singninPerson = async (model: AuthSingninDto) => {
+const signin = async (model: AuthSingninDto) => {
     const personRepository = getCustomRepository(PersonRepository);
 
     const personDb = await personRepository.findOne({ where: { email: model.email } });
@@ -20,4 +20,18 @@ const singninPerson = async (model: AuthSingninDto) => {
     return jwt;
 };
 
-export default { singninPerson };
+const signup = async (model: AuthSignupDto) => {
+    const personRepository = getCustomRepository(PersonRepository);
+
+    const persondb = await personRepository.findOne({ where: { email: model.email } });
+    if (persondb) throw BadRequestException('El correo ya esta registrado.');
+
+    const hashePassword = await encryptPassword(model.password);
+    const newPerson = personRepository.create(model);
+    newPerson.password = hashePassword;
+    const createdPerson = await personRepository.save(newPerson);
+
+    return createdPerson;
+};
+
+export default { signin, signup };
