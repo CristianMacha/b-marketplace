@@ -13,9 +13,9 @@ export default new Strategy(opts, async (payload, done) => {
     try {
         const personDb = await personRepository.findOne({
             where: { id: payload.id },
-            select: ['id', 'surnames', 'names', 'email', 'role', 'stores'],
-            relations: ['role', 'stores'],
-        });
+            select: ['id', 'surnames', 'names', 'email', 'role'],
+            relations: ['role', 'stores', 'stores.store']
+        });        
 
         if (personDb) return done(null, personDb);
 

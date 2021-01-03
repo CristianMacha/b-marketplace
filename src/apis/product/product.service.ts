@@ -10,7 +10,7 @@ const registerProduct = async (model: ProductWriteDto, person: Auth) => {
     const productRepository = getCustomRepository(ProductRepository);
     const storeRepository = getCustomRepository(StoreRepository);
 
-    const storePersondb = await storeRepository.findOne(person.stores[0].id, { where: { active: true } });
+    const storePersondb = await storeRepository.findOne(person.stores[0].store.id, { where: { active: true } });
     if (!storePersondb) throw BadRequestException('La tienda no esta activa.');
 
     const productdb = await productRepository.findOne({ where: { store: storePersondb, name: model.name } });
@@ -26,7 +26,7 @@ const registerProduct = async (model: ProductWriteDto, person: Auth) => {
 const listMyProducts = async (person: Auth) => {
     const productRepository = getCustomRepository(ProductRepository);
 
-    const listProducts = await productRepository.find({ where: { store: person.stores[0], active: true } });
+    const listProducts = await productRepository.find({ where: { store: person.stores[0].store.id, active: true } });
     if (!listProducts) throw BadRequestException('No se ha encontrado ningun producto.');
 
     return listProducts;

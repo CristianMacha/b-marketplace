@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-import { STATUS_STORE } from '../../config/environment';
+
 import { PersonStore } from '../person-store/person-store.entity';
+import { STATUS_STORE } from '../../config/environment';
 import { Product } from '../product/product.entity';
 
 @Entity()

@@ -25,6 +25,7 @@ const createStore = async (model: StoreWriteDto, person: Auth) => {
 
         const newStore = storeRepository.create(model);
         const createdStore = await queryRunner.manager.save(Store, newStore);
+        
 
         const personAuth = personRepository.create(person);
         const newPersonStore = personStoreRepository.create();

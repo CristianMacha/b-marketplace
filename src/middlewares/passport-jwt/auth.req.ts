@@ -1,5 +1,5 @@
+import { PersonStore } from '../../apis/person-store/person-store.entity';
 import { Role } from '../../apis/role/role.entity';
-import { Store } from '../../apis/store/store.entity';
 
 export class Auth {
     id: number;
@@ -7,5 +7,5 @@ export class Auth {
     surnames: string;
     email: string;
     role: Role;
-    stores: Store[];
+    stores: PersonStore[];
 }

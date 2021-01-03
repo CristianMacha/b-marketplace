@@ -1,4 +1,3 @@
-import { Role } from '../role/role.entity';
 import { Store } from '../store/store.entity';
 
 export class PersonWriteDto {
@@ -10,5 +9,4 @@ export class PersonWriteDto {
     photo: string;
     sexo: boolean;
     store: Store;
-    role: Role;
 }
