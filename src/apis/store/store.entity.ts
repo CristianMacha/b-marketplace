@@ -1,5 +1,7 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { STATUS_STORE } from '../../config/environment';
+import { PersonStore } from '../person-store/person-store.entity';
+import { Product } from '../product/product.entity';
 
 @Entity()
 export class Store {
@@ -27,9 +29,6 @@ export class Store {
     @Column({ nullable: true })
     instagram: string;
 
-    @Column({ nullable: true })
-    twitter: string;
-
     @Column({ nullable: false, default: true })
     active: boolean;
 
@@ -41,4 +40,10 @@ export class Store {
 
     @UpdateDateColumn({ type: 'timestamp', nullable: false })
     updateAt: Date;
+
+    @OneToMany(() => PersonStore, (pStore) => pStore.store)
+    people: PersonStore[];
+
+    @OneToMany(() => Product, (product) => product.store)
+    products: Product[];
 }

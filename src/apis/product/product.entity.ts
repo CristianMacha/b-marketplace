@@ -1,12 +1,11 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+
+import { Store } from '../store/store.entity';
 
 @Entity()
 export class Product {
     @PrimaryGeneratedColumn()
     id: string;
-
-    @Column({ nullable: false })
-    code: string;
 
     @Column({ nullable: false })
     name: string;
@@ -20,7 +19,7 @@ export class Product {
     @Column({ nullable: false })
     photo: string;
 
-    @Column({ nullable: false })
+    @Column({ nullable: false, default: true })
     active: boolean;
 
     @CreateDateColumn({ type: 'timestamp', nullable: false })
@@ -28,4 +27,7 @@ export class Product {
 
     @UpdateDateColumn({ type: 'timestamp', nullable: false })
     updateAt: Date;
+
+    @ManyToOne(() => Store, (store) => store)
+    store: Store;
 }

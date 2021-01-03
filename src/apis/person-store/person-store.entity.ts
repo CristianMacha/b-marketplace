@@ -1,16 +1,12 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-import { Category } from '../category/category.entity';
+
+import { Person } from '../person/person.entity';
+import { Store } from '../store/store.entity';
 
 @Entity()
-export class Subcategory {
+export class PersonStore {
     @PrimaryGeneratedColumn()
     id: number;
-
-    @Column({ nullable: false })
-    name: string;
-
-    @Column({ nullable: true })
-    description: string;
 
     @Column({ nullable: false, default: true })
     active: boolean;
@@ -21,6 +17,9 @@ export class Subcategory {
     @UpdateDateColumn({ type: 'timestamp', nullable: false })
     updateAt: Date;
 
-    @ManyToOne(() => Category, (category) => category.subcategories)
-    category: Category;
+    @ManyToOne(() => Person, (person) => person.stores)
+    person: Person;
+
+    @ManyToOne(() => Store, (store) => store.people)
+    store: Store;
 }

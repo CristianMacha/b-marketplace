@@ -4,4 +4,6 @@ export class StoreWriteDto {
     description: string;
     location: string;
     email: string;
+    facebook: string;
+    instagram: string;
 }

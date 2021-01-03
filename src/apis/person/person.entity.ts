@@ -1,5 +1,14 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    ManyToOne,
+    OneToMany,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+} from 'typeorm';
 
+import { PersonStore } from '../person-store/person-store.entity';
 import { Role } from '../role/role.entity';
 
 @Entity()
@@ -15,9 +24,6 @@ export class Person {
 
     @Column({ nullable: false })
     email: string;
-
-    @Column({ nullable: true })
-    dni: string;
 
     @Column({ nullable: true })
     photo: string;
@@ -45,4 +51,7 @@ export class Person {
 
     @ManyToOne(() => Role, (role) => role.people, { nullable: false })
     role: Role;
+
+    @OneToMany(() => PersonStore, (pStore) => pStore.person)
+    stores: PersonStore[];
 }
