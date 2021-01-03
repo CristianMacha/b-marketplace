@@ -10,6 +10,7 @@ import {
 
 import { PersonStore } from '../person-store/person-store.entity';
 import { Role } from '../role/role.entity';
+import { TypePerson } from '../type-person/type-person.entity';
 
 @Entity()
 export class Person {
@@ -54,4 +55,7 @@ export class Person {
 
     @OneToMany(() => PersonStore, (pStore) => pStore.person)
     stores: PersonStore[];
+
+    @ManyToOne(() => TypePerson, (tPerson) => tPerson.people)
+    typePerson: TypePerson;
 }

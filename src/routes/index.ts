@@ -8,6 +8,7 @@ import storeRoutes from '../apis/store/store.routes';
 import categoryRoutes from '../apis/category/category.routes';
 import subcategoryRoutes from '../apis/subcategory/subcategory.routes';
 import productRoutes from '../apis/product/product.routes';
+import typePersonRoutes from '../apis/type-person/type-person.routes';
 
 const routes = Router();
 routes.use('/role', roleRoutes);
@@ -17,5 +18,7 @@ routes.use('/store', [passport.authenticate('jwt', { session: false })], storeRo
 routes.use('/category', categoryRoutes);
 routes.use('/subcategory', subcategoryRoutes);
 routes.use('/product', productRoutes);
+// routes.use('/typeperson', [passport.authenticate('jwt', { session: false })], typePersonRoutes);
+routes.use('/typeperson', typePersonRoutes);
 
 export default routes;
