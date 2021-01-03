@@ -1,6 +1,15 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    ManyToOne,
+    OneToMany,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+} from 'typeorm';
 
 import { PersonStore } from '../person-store/person-store.entity';
+import { TypePerson } from '../type-person/type-person.entity';
 
 @Entity()
 export class Person {
@@ -42,4 +51,7 @@ export class Person {
 
     @OneToMany(() => PersonStore, (pStore) => pStore.person)
     stores: PersonStore[];
+
+    @ManyToOne(() => TypePerson, (tPerson) => tPerson.people)
+    typePerson: TypePerson;
 }
