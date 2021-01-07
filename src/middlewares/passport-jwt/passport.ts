@@ -13,7 +13,7 @@ export default new Strategy(opts, async (payload, done) => {
     try {
         const personDb = await personRepository.findOne({
             where: { id: payload.id },
-            select: ['id', 'surnames', 'names', 'email', 'role'],
+            select: ['id', 'surnames', 'names', 'email', 'typePerson'],
             relations: ['role', 'stores', 'stores.store']
         });        
 
