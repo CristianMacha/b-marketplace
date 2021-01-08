@@ -3,7 +3,7 @@ import { getCustomRepository } from 'typeorm';
 import { BadRequestException } from '../../middlewares/error-handler';
 import { PersonRepository } from '../person/person.respository';
 
-import { AuthSignupDto, AuthSingninDto } from './auth.dto';
+import { AuthSignupDto, AuthSingninDto, ResponseAuthDto } from './auth.dto';
 import { comparePassword, encryptPassword } from './utils/encrypt';
 import { generateJWT } from './utils/jwt';
 
@@ -17,7 +17,8 @@ const signin = async (model: AuthSingninDto) => {
     if (!match) throw BadRequestException('Credenciales incorrectos.');
 
     const jwt = await generateJWT(personDb.id);
-    return jwt;
+    const infoPerson = new ResponseAuthDto(personDb);
+    return { jwt, infoPerson };
 };
 
 const signup = async (model: AuthSignupDto) => {
