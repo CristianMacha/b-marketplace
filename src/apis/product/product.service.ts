@@ -17,7 +17,7 @@ const registerProduct = async (model: ProductWriteDto, person: Auth) => {
     if (productdb) throw BadRequestException('Ya registraste un producto con este nombre.');
 
     model.store = storePersondb;
-    const newProduct = await productRepository.create(model);
+    const newProduct = productRepository.create(model);
     const createdProduct = await productRepository.save(newProduct);
 
     return createdProduct;

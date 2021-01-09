@@ -1,4 +1,4 @@
-import { Role } from "../role/role.entity";
+import { TypePerson } from '../type-person/type-person.entity';
 
 export class AuthSingninDto {
     email: string;
@@ -10,5 +10,5 @@ export class AuthSignupDto {
     surname: string;
     email: string;
     password: string;
-    role: Role;
+    typePerson: TypePerson;
 }

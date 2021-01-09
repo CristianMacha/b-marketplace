@@ -6,7 +6,10 @@ export default function permit(roles: string[]) {
     const rolesPermit = roles;
 
     return async (req: Request, res: Response, next: NextFunction) => {
-        const { role } = <Auth>req.user;
+        const { stores } = <Auth>req.user;
+
+        if (stores.length == 0) return res.status(401).json({ message: 'No tienes acceso.' });
+        const role = stores[0].role;
 
         try {
             const permit = rolesPermit.some((code) => code === role.code);
