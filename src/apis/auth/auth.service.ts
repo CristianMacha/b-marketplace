@@ -1,9 +1,10 @@
 import { getCustomRepository } from 'typeorm';
 
 import { BadRequestException } from '../../middlewares/error-handler';
+import { Person } from '../person/person.entity';
 import { PersonRepository } from '../person/person.respository';
 
-import { AuthSignupDto, AuthSingninDto } from './auth.dto';
+import { AuthSignupDto, AuthSingninDto, ResponseAuthDto } from './auth.dto';
 import { comparePassword, encryptPassword } from './utils/encrypt';
 import { generateJWT } from './utils/jwt';
 
@@ -34,4 +35,9 @@ const signup = async (model: AuthSignupDto) => {
     return createdPerson;
 };
 
-export default { signin, signup };
+const getPersonLogged = async (person: Person) => {
+    const personLogged = new ResponseAuthDto(person);
+    return personLogged;
+};
+
+export default { signin, signup, getPersonLogged };
